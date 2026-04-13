@@ -1,0 +1,28 @@
+name: Java CI avec Marketplace
+
+on:
+  push:
+    branches:
+      - main
+      - dev1
+      - dev2
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Setup Java depuis Marketplace
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Compiler le projet
+        run: javac Main.java Etudiant.java Professeur.java
